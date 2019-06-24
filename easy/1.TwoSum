@@ -1,0 +1,63 @@
+Solution 1:(穷举法)
+vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> index;
+        for(int i=0;i<nums.size();i++)
+        {
+            for(int j=i+1;j<nums.size();j++)
+            {
+                if(nums[j]==target-nums[i])
+                {
+                    index.push_back(i);    //将元素i放入index向量的第一个空位（类似于进栈）
+                    index.push_back(j);
+                }
+            }
+        }
+        return index;
+    }
+
+Solution 2: map() 
+   vector<int> twoSum(vector<int>& nums, int target) {
+    map<int, int> myMap; //可像vector一样看作一维数组。
+    vector<int> result;
+//如果nums[i]的补数不存于map，则将该数添加到map中，否则不用添加，直接将map中的补数的value以及该数的i以数组的形式添加到vector。
+    for (int i = 0; i < nums.size(); i++) 
+    {
+		//find()确定该key所在map的位置，数据类型为迭代器，如果不存在，则返回map.end()。
+        if (myMap.find(target - nums[i]) == myMap.end())
+        {
+         myMap[nums[i]] = i;
+        } 
+        else 
+        {
+            result = {myMap[target - nums[i]], i};
+            break;
+        }
+    }
+    return result;
+   }
+
+
+Solution 3: map() 比solution 2差（数组元素不能重复） 
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int,int> H;
+        vector<int> index;
+        map<int,int>::iterator I;
+        for(int i=0;i<nums.size();i++)
+        {
+            H.insert(pair<int,int>(nums[i],i)); //将数组的值保存为key（对应迭代器中的iterator->first）,
+												//对应序号保存为value（对应迭代器中的iterator->second）
+
+        }
+        for(I=H.begin();I!=H.end();I++)
+        {
+            int complement=target-(I->first);
+            if(H.count(complement) && H.find(complement)!=I) //count()检验map中是否存在该key，是返1，否返0；
+															//find()确定该key所在map的位置，数据类型为迭代器）
+            {
+                index.push_back(I->second);
+                index.push_back((H.find(complement))->second);
+            }
+            if(index.size()==2) break;
+        }
+        return index;
+    }
