@@ -1,0 +1,26 @@
+solution 1:(转换为字符串）
+
+    bool isPalindrome(int x) {
+        string q=to_string(x),p=to_string(x);
+        reverse(p.begin(),p.end());
+        if(p==q) return 1;
+        else return 0;
+    }
+	
+	
+solution 2:
+
+    bool isPalindrome(int x) {
+        long num=0;  //防止32位int溢出
+        int X=x;
+        if(x<0) return 0;
+        else{
+            do{
+                num=num*10+X%10;
+                X/=10;
+            }while(X!=0);
+            cout<<num<<endl;
+            if(num==x) return 1;
+            else return 0;
+        }
+  }
