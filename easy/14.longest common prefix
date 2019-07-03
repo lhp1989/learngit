@@ -1,0 +1,32 @@
+solution 1:(出现内存溢出的错误，无法查出bug，待验证）    
+	string result="";
+        if(strs.size()==0) return result;
+        int i=0,j;
+        for(;i<strs[0].size();i++){
+            j=1;
+            while(strs[0][i]==strs[j][i] && j<strs.size()){
+                j++;
+            }
+            if(j<strs.size()) 
+                break;
+        }
+        for(int t=0;t<i;t++){
+            result+=strs[0][t];
+        }
+        return result;
+		
+		
+solution 2:
+        string result="";
+        if(strs.size()==0) 
+            return result;
+        for(int i=0;i<strs[0].size();i++){
+            int j=1;
+            for(;j<strs.size() && strs[j].size()>i;j++){
+                if(strs[0][i]!=strs[j][i])
+                    return result;
+            }
+            if(j==strs.size())
+                result+=strs[0][i];
+        }
+        return result;
