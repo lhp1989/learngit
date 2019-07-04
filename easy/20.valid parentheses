@@ -1,0 +1,22 @@
+    bool isValid(string s) {
+        stack<char> parenthese;
+        for(const auto& c:s){
+            switch(c){
+                case '(': 
+                    parenthese.push(')');
+                    break;
+                case '[':
+                    parenthese.push(']');
+                    break;
+                case '{':
+                    parenthese.push('}');
+                    break;
+                default:
+                    if(parenthese.empty() || c!=parenthese.top())
+                        return false;
+                    else 
+                        parenthese.pop();
+            }
+        }
+        return parenthese.empty();
+    }
