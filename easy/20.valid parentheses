@@ -1,6 +1,7 @@
     bool isValid(string s) {
         stack<char> parenthese;
-        for(const auto& c:s){
+        for(const auto& c:s){  //遍历字符串的for特殊形式：将s中的字符依次赋给c；
+							   //const 表示c不可被改变，auto表示c的类型自动适应s的字符
             switch(c){
                 case '(': 
                     parenthese.push(')');

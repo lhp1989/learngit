@@ -34,3 +34,16 @@ solution 1:
         
         return head;
     }
+	
+solution 2:
+ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode newlist(INT_MIN);
+        ListNode *token=&newlist;  //指针初始化需要address而非value。
+        while(l1&&l2){
+            ListNode *&lr=l1->val<=l2->val?l1:l2; //为l1,l2指定别名
+            token=token->next=lr;   //赋值顺序是从右到左。
+            lr=lr->next;           //别名改变，等于当前引用的变量改变。
+        }
+        token->next=l1?l1:l2;
+        return newlist.next;
+    }

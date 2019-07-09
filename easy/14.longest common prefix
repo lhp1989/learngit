@@ -1,4 +1,7 @@
-solution 1:(出现内存溢出的错误，无法查出bug，待验证）    
+solution 1:(出现内存溢出的错误，无法查出bug，待验证）   
+ string longestCommonPrefix(vector<string>& strs) { //如果不带&,则在调用该函数时，
+													//能自动复制一个vector,这会增加
+													//运行时间。&则是直接引用原vector.
 	string result="";
         if(strs.size()==0) return result;
         int i=0,j;
@@ -14,9 +17,11 @@ solution 1:(出现内存溢出的错误，无法查出bug，待验证）
             result+=strs[0][t];
         }
         return result;
+	}
 		
 		
 solution 2:
+       string longestCommonPrefix(vector<string>& strs) {
         string result="";
         if(strs.size()==0) 
             return result;
@@ -30,3 +35,4 @@ solution 2:
                 result+=strs[0][i];
         }
         return result;
+    }
